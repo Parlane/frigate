@@ -47,22 +47,6 @@ def get_ffmpeg_input(ffmpeg_input):
     frigate_vars = {k: v for k, v in os.environ.items() if k.startswith('FRIGATE_')}
     return ffmpeg_input.format(**frigate_vars)
 
-# class CameraWatchdog(threading.Thread):
-#     def __init__(self, camera):
-#         threading.Thread.__init__(self)
-#         self.camera = camera
-
-#     def run(self):
-#         prctl.set_name(self.__class__.__name__)
-#         while True:
-#             # wait a bit before checking
-#             time.sleep(10)
-
-#             if self.camera.frame_time.value != 0.0 and (datetime.datetime.now().timestamp() - self.camera.frame_time.value) > self.camera.watchdog_timeout:
-#                 print(self.camera.name + ": last frame is more than 5 minutes old, restarting camera capture...")
-#                 self.camera.start_or_restart_capture()
-#                 time.sleep(5)
-
 def filtered(obj, objects_to_track, object_filters, mask):
     object_name = obj[0]
 
